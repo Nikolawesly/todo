@@ -1,0 +1,56 @@
+### user registration
+
+POST http://localhost:8080/user-api/user
+Content-Type: application/json 
+
+{
+    "name":"test",
+    "email":"test@gmail.com",
+    "password":"test",
+    "todos":[]
+}
+
+###User login
+POST http://localhost:8080/user-api/login
+Content-Type: application/json
+
+{
+    "email": "test@gmail.com",
+    "password": "test"
+}
+
+
+### Add Task
+PUT http://localhost:8080/user-api/add-task/69315ad5ac8fc1e4bd04fdeb
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZ21haWwuY29tIiwiaWF0IjoxNzY0ODY0Nzg5LCJleHAiOjE3NjQ4NjUzODl9._Gc5noweBNXA4QS3lesxB6XIuic2Mx-N75humUv16io; Path=/; HttpOnly; Secure; SameSite=Strict
+Content-Type: application/json
+
+{
+  "taskName": "Sleeping",
+  "description": "Need to sleep 8 hrs today"
+}
+
+
+### Edit Task
+PUT http://localhost:8080/user-api/edit-task/69315ad5ac8fc1e4bd04fdeb/69315c881b3ff70c7be207da
+Content-Type: application/json
+
+{
+    "taskName": "coding and dev",
+    "description": "Need to code 2 hrs today each"
+}
+
+###setTaskCompleted
+PUT http://localhost:8080/user-api/complete-task/69315ad5ac8fc1e4bd04fdeb/69315c881b3ff70c7be207da
+Content-Type: application/json
+
+{
+    "taskName":"sleeping again",
+    "description":"I sleep early on this day",
+    "status":"completed"   
+}
+
+
+### Delete task
+DELETE http://localhost:8080/user-api/delete-task/69315ad5ac8fc1e4bd04fdeb/69315c881b3ff70c7be207da
+
