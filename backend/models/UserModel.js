@@ -1,33 +1,31 @@
-import { Schema, model, mongoose } from "mongoose";
+import { Schema, model } from "mongoose";
 
-//create user Schema
-const UserSchema = new Schema({
+//create user schema
+const userSchema = new Schema(
+  {
     name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     email: {
-        type: String,
-        required: true,
-        unique:[true,"Duplicate email"]
+      type: String,
+      required: true,
+      unique:[true,"Email already existed"]
     },
     password: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     todos: [
-        {
-            taskName: { type: String, required: true, },
-            description: { type: String, required: true },
-            status: { type:String, default: "pending" }
-        }
-    ]
+      {
+        taskName: { type: String, required: true },
+        description: { type: String, required: true },
+        status: { type: String, default: "pending" },
+      },
+    ],
+  },
+  { versionKey: false, timestamps: true, strict: true }
+);
 
-}, {
-    versionKey: false,
-    timestamps: true,
-    strict: true
-}
-)
-
-export const UserModal = model("User", UserSchema);
+//generate user model for the above user schema
+export const UserModel = model("user", userSchema);
